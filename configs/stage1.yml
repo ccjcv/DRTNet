@@ -1,0 +1,27 @@
+NAME: "ClsNet"
+
+SEED: 0
+
+DATA: 
+  ROOT: "/home/caichengjie/anaconda3/envs/torch1.10/daima/BANA-main/data/VOCdevkit/VOC2012"
+  NUM_CLASSES: 2 # For VOC
+  MODE: "train"
+  BATCH_SIZE: 2
+  CROP_SIZE: (512, 512) #(321, 321),(512,512)
+  
+MODEL:
+  WEIGHTS: " mit_b2.pth" # From PyCaffe and VGG-16 ImageNet pretrained weights [vgg16_20M.caffemodel] (http://liangchiehchen.com/projects/Init%20Models.html).
+  ROI_SIZE: [2,2]
+  GRID_SIZE: 4 #4
+  GAP: False
+
+SOLVER:
+  LR: 1e-3 
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 5e-4
+  MAX_ITER: 24000
+  MILESTONES: [5000]
+
+WANDB:
+  NAME: "ClsNet_Mit_ddti_1"
+  PROJECT: "BANA"

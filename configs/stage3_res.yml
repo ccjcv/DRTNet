@@ -1,0 +1,38 @@
+NAME: "SegNet_ASPP"
+
+SEED: 0
+
+DATA: 
+  ROOT: "/home/caichengjie/anaconda3/envs/torch1.10/daima/BANA-main/data/VOCdevkit/VOC2012"
+  MODE: "val"
+  PSEUDO_LABEL_FOLDER: [ "Generation/Y_crf_u0",
+                         "Generation/Y_ret",
+                          #"BgMaskfromBoxes",
+                         "Generation/Y_qian"
+                      ]#"Generation/Y_crf_u0", "Generation/Y_ret"
+  BATCH_SIZE: 4
+  CROP_SIZE: (256, 256)
+  NUM_CLASSES: 2
+  
+MODEL:
+  WEIGHTS: "init_caffemodel"
+  FREEZE_BN: False
+  DAMP: 7 
+  LAMBDA: 0.1
+  DCRF: [4, 67, 3, 3, 1] # DeepLab-V2-ASPP
+  LOSS: "BCM"
+
+SOLVER:
+  LR: 2.5e-4 
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 5e-4
+  MAX_ITER: 23805
+  GAMMA: 0.9
+  STEP_SIZE: 10.0
+
+WANDB:
+  MODE: True
+  NAME: ""
+  PROJECT: "BANA"
+  RESTORE_NAME: "RES Run_7"
+  CHECKPOINT: "23805.pth" # Previous wandb checkpoint to be loaded

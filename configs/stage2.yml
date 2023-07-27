@@ -1,0 +1,26 @@
+NAME: "Generation"
+SAVE_PSEUDO_LABLES: True
+
+SEED: 0
+
+DATA: 
+  ROOT: "/home/caichengjie/anaconda3/envs/torch1.10/daima/BANA-main/data/VOCdevkit/VOC2012"  #root directory corresponding to Pascal VOC or MS COCO
+  NUM_CLASSES: 2                                # 21 for VOC to VOC, 81 for VOC to COCO
+  MODE : "train"
+  AUG: False
+  
+MODEL:
+  WEIGHTS: "ClsNet.pt" # From Stage 1
+  ROI_SIZE: [None,None]
+  GRID_SIZE: 1
+  BG_THRESHOLD: 0.99
+  DCRF: [4, 55, 3, 3, 3]
+
+WANDB:
+  RESTORE_RUN_PATH: "bihui/BANA/1tmmauac"
+  #mei yanse, gai norm 136qsno2 #yikaishi yl00wxcb
+  # "dl-segmentation/MLRC-BANA/3gmasxud" for bap naug
+  # "dl-segmentation/MLRC-BANA/3tlmc1pv" for bap aug
+  # "dl-segmentation/MLRC-BANA/yykkwjhx" for gap naug
+  # "dl-segmentation/MLRC-BANA/3v1fvawn" for gap aug
+  RESTORE_NAME: "weights/ClsNet.pt"
